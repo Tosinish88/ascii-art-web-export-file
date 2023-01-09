@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>Ascii Art</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/html2canvas.js" defer></script>
+</head>
+<body>
+
+    <img src="img/logo.png" alt="Ascii Art" width="100%" height="100%">
+    <div id="particles-js">
+    <div class="container">
+
+    <form action="ascii-art" method="post">
+        <label for="text">Input Text</label>
+        <br>
+        <textarea type="text" name="inputtext" cols="20" rows="2"> </textarea>
+        <br>
+        <label for="banner">Banner</label>
+        <br>
+        <input type="radio" name="banner" value="standard.txt"> Standard
+        <input type="radio" name="banner" value="shadow.txt"> Shadow
+        <input type="radio" name="banner" value="thinkertoy.txt"> Thinkertoy
+        <br>
+        <button class="myButton">Render</button>  
+    </form>
+    <br>
+    <hr>
+    <br>
+    <label for="output">Download Ascii-art as file</label>
+    <br>
+    <a href="output.txt"><button class="myButton">txt</button> </a>
+    <button class="myButton" onclick="bild()" id="select1">
+        <script>
+            function bild(){
+            html2canvas(document.getElementById("myText"), {
+            allowTaint: true,
+            backgroundColor: 'black',
+            useCORS: true,
+            })
+            .then(function (canvas) {
+            // It will return a canvas element
+            let image = canvas.toDataURL("image/png", 0.5).replace("image/png", "image/octet-stream");''
+            window.location.href=image;
+            ;
+            })
+            .catch((e) => {
+            // Handle errors
+            console.log(e);
+            });}
+            </script>
+            Image
+    </button>
+    <br>
+    <label for="select1">Colors</label>
+    <br>
+    <button class="myButton" type="button" onclick="changeStyle()">Red</button>
+    <button class="myButton" type="button" onclick="changeStyleGreen()">Green</button>
+    <button class="myButton" type="button" onclick="changeStyleBlue()">Blue</button>
+    <button class="myButton" type="button" onclick="changeStyleYellow()">Yellow</button>
+    <button class="myButton" type="button" onclick="changeStylePurple()">Purple</button>
+    <button class="myButton" type="button" onclick="changeStyleOrange()">Orange</button>
+    <script type="text/javascript" src="js/color.js"></script>
+    </div>
+    <br>
+    <div class="FixedHeightContainer">
+        <div id="myElement">
+        <br><center>
+            <div class="Content" id="color" style="overflow-y: scroll">
+                <pre id="myText">{{.PageTitle}}</pre>
+                <canvas id="myCanvas" width="800" height="600"></canvas>
+        </center>
+        </div>
+            </div>  
+        </div>
+      </div>
+    </div>
+
+    
+</body>
+<script type="text/javascript" src="js/particles.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+</html>
